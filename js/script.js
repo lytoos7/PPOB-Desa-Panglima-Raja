@@ -183,3 +183,14 @@ window.open(
 );
 
 }
+
+function filterProduk(jenis){
+
+const hasil =
+semuaProduk.filter(
+item => item.jenis === jenis
+);
+
+tampilkan(hasil);
+
+}
