@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PPOB Desa Panglima Raja</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>PPOB Desa Panglima Raja</h1>
+
+<input type="text" id="cari" placeholder="Cari produk...">
+
+<div id="produkContainer"></div>
+
+<div class="header">
+
+    <h2>PPOB Panglima Raja</h2>
+
+    <div class="saldo">
+        Rp <span id="saldo">0</span>
+    </div>
+
+</div>
+
+<div class="menu">
+
+<button onclick="filterProduk('Pulsa')">
+Pulsa
+</button>
+
+<button onclick="filterProduk('Dana')">
+Dana
+</button>
+
+<button onclick="filterProduk('OVO')">
+OVO
+</button>
+
+<button onclick="filterProduk('Token PLN')">
+PLN
+</button>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
