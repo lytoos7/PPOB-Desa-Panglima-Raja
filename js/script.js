@@ -5,18 +5,15 @@ const API =
 
 let semuaProduk = [];
 
-fetch(API,{
-  method:"GET",
-  mode:"cors"
-})
-.then(res => res.json())
-.then(data => {
+const script = document.createElement("script");
+script.src =
+"https://script.google.com/macros/s/AKfycbyvxQTIdv1QUMFycls2x7pDgGZHZvvVTX7VMuzcnCMrpeIw6IeSs5eoMAYX2kZ3zmrD/exec?api=produk&callback=loadProduk";
+document.body.appendChild(script);
 
+function loadProduk(data){
     semuaProduk = data;
-
     tampilkan(data);
-
-});
+}
 
 // ===== Tahap 5 =====
 function tampilkan(data){
