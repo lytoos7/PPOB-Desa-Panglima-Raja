@@ -179,17 +179,12 @@ document.body.appendChild(promoScript);
 
 function loadPromo(data){
 
-document.getElementById("promo")
-.innerHTML = data.promo;
-
-}
-
 document
 .getElementById("promoText")
 .innerHTML =
 data.promo;
 
-);
+}
 
 function hubungiAdmin(){
 
