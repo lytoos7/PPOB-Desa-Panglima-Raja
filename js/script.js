@@ -36,7 +36,7 @@ Rp ${item.hargaJual.toLocaleString()}
 
 <button
 class="beli"
-onclick="beliProduk('${item.produk}',${item.hargaJual})">
+onclick="bukaPopup('${item.produk}',${item.hargaJual})">
 Beli
 </button>
 
@@ -82,6 +82,69 @@ Harga: Rp ${harga.toLocaleString()}
 
 window.open(
 `https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`
+);
+
+}
+
+function bukaPopup(produk,harga){
+
+document.getElementById("popup")
+.style.display="block";
+
+document.getElementById("popupProduk")
+.innerHTML=produk;
+
+document.getElementById("produkDipilih")
+.value=produk;
+
+document.getElementById("hargaDipilih")
+.value=harga;
+
+}
+
+function tutupPopup(){
+
+document.getElementById("popup")
+.style.display="none";
+
+}
+
+function kirimWA(){
+
+const tujuan =
+document.getElementById("tujuan").value;
+
+const produk =
+document.getElementById("produkDipilih").value;
+
+const harga =
+document.getElementById("hargaDipilih").value;
+
+if(tujuan==""){
+
+alert("Isi nomor tujuan terlebih dahulu");
+
+return;
+
+}
+
+const admin =
+"6282261467360";
+
+const pesan =
+`Halo Admin PPOB Desa Panglima Raja
+
+Saya ingin membeli:
+
+Produk : ${produk}
+
+Tujuan : ${tujuan}
+
+Harga : Rp ${Number(harga).toLocaleString()}
+`;
+
+window.open(
+`https://wa.me/${admin}?text=${encodeURIComponent(pesan)}`
 );
 
 }
