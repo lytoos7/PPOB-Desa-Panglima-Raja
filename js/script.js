@@ -1,7 +1,7 @@
 console.log("Aplikasi PPOB Berjalan");
 
 // Gunakan URL Web App Anda yang sudah di-deploy ulang
-const API_URL = "https://script.google.com/macros/s/AKfycbyvxQTIdv1QUMFycls2x7pDgGZHZvvVTX7VMuzcnCMrpeIw6IeSs5eoMAYX2kZ3zmrD/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbwZhJQyWpKUsZZh4xjNOJ1-QS5zqsBIr06wBsEyab9u0aSZ3q2_JZ_9eODJbJ_rTc76/exec";
 
 let semuaProduk = [];
 const container = document.getElementById("produkContainer");
