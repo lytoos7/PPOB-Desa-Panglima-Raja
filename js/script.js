@@ -162,3 +162,16 @@ Number(data.saldo)
 .toLocaleString("id-ID");
 
 });
+
+fetch(
+"https://SCRIPT-ANDA/exec?api=promo"
+)
+.then(r=>r.json())
+.then(data=>{
+
+document
+.getElementById("promoText")
+.innerHTML =
+data.promo;
+
+});
