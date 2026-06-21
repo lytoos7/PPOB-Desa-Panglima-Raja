@@ -164,7 +164,7 @@ Number(data.saldo)
 });
 
 fetch(
-"https://SCRIPT-ANDA/exec?api=promo"
+"https://script.google.com/macros/s/AKfycbyvxQTIdv1QUMFycls2x7pDgGZHZvvVTX7VMuzcnCMrpeIw6IeSs5eoMAYX2kZ3zmrD/exec?api=promo"
 )
 .then(r=>r.json())
 .then(data=>{
@@ -175,3 +175,11 @@ document
 data.promo;
 
 });
+
+function hubungiAdmin(){
+
+window.open(
+"https://wa.me/6282261467360"
+);
+
+}
