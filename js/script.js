@@ -1,3 +1,5 @@
+console.log("SCRIPT.JS BERJALAN");
+
 const API =
 "https://script.google.com/macros/s/AKfycbyvxQTIdv1QUMFycls2x7pDgGZHZvvVTX7VMuzcnCMrpeIw6IeSs5eoMAYX2kZ3zmrD/exec?api=produk";
 
