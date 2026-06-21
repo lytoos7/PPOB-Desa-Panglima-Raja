@@ -189,7 +189,7 @@ document
 .innerHTML =
 data.promo;
 
-});
+);
 
 function hubungiAdmin(){
 
