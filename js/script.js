@@ -148,3 +148,17 @@ window.open(
 );
 
 }
+
+const API_SALDO =
+"https://script.google.com/macros/s/AKfycbyvxQTIdv1QUMFycls2x7pDgGZHZvvVTX7VMuzcnCMrpeIw6IeSs5eoMAYX2kZ3zmrD/exec?api=saldo";
+
+fetch(API_SALDO)
+.then(r=>r.json())
+.then(data=>{
+
+document.getElementById("saldo")
+.innerHTML =
+Number(data.saldo)
+.toLocaleString("id-ID");
+
+});
