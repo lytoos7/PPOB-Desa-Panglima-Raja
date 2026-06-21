@@ -51,6 +51,37 @@ placeholder="Cari produk..."
 
 <div id="produkContainer"></div>
 
+<div id="popup" class="popup">
+
+    <div class="popup-content">
+
+        <h3 id="popupProduk"></h3>
+
+        <input
+        type="text"
+        id="tujuan"
+        placeholder="Nomor HP / ID Pelanggan">
+
+        <input
+        type="hidden"
+        id="produkDipilih">
+
+        <input
+        type="hidden"
+        id="hargaDipilih">
+
+        <button onclick="kirimWA()">
+            Lanjut Pesan
+        </button>
+
+        <button onclick="tutupPopup()">
+            Batal
+        </button>
+
+    </div>
+
+</div>
+
 <script src="js/script.js"></script>
 
 </body>
