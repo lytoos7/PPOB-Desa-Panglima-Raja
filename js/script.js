@@ -154,22 +154,35 @@ window.open(
 const API_SALDO =
 "https://script.google.com/macros/s/AKfycbyvxQTIdv1QUMFycls2x7pDgGZHZvvVTX7VMuzcnCMrpeIw6IeSs5eoMAYX2kZ3zmrD/exec?api=saldo";
 
-fetch(API_SALDO)
-.then(r=>r.json())
-.then(data=>{
+const saldoScript = document.createElement("script");
+
+saldoScript.src =
+"https://script.google.com/macros/s/AKfycbyvxQTIdv1QUMFycls2x7pDgGZHZvvVTX7VMuzcnCMrpeIw6IeSs5eoMAYX2kZ3zmrD/exec?api=saldo&callback=loadSaldo";
+
+document.body.appendChild(saldoScript);
+
+function loadSaldo(data){
 
 document.getElementById("saldo")
 .innerHTML =
 Number(data.saldo)
 .toLocaleString("id-ID");
 
-});
+}
 
-fetch(
-"https://script.google.com/macros/s/AKfycbxxd7EvWgzt4MG8V5J1Qv-rzdt5ThjHqYb7Vn11BOYSyWamwESWZ0DEmj2uYhtWoYi8/exec?api=promo"
-)
-.then(r=>r.json())
-.then(data=>{
+const promoScript = document.createElement("script");
+
+promoScript.src =
+"https://script.google.com/macros/s/AKfycbyvxQTIdv1QUMFycls2x7pDgGZHZvvVTX7VMuzcnCMrpeIw6IeSs5eoMAYX2kZ3zmrD/exec?api=promo&callback=loadPromo";
+
+document.body.appendChild(promoScript);
+
+function loadPromo(data){
+
+document.getElementById("promo")
+.innerHTML = data.promo;
+
+}
 
 document
 .getElementById("promoText")
