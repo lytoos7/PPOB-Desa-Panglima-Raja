@@ -337,6 +337,22 @@
             border: none;
         }
     </style>
+
+    <!-- Link ke Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Script untuk memanggil Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js').then(function(registration) {
+            console.log('ServiceWorker sukses dengan scope: ', registration.scope);
+          }, function(err) {
+            console.log('ServiceWorker gagal: ', err);
+          });
+        });
+      }
+    </script>
 </head>
 <body>
 
