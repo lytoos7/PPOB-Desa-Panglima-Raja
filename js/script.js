@@ -196,11 +196,16 @@ window.open(
 
 function filterProduk(jenis){
 
-const hasil =
-semuaProduk.filter(
-item => item.jenis === jenis
-);
+    if(jenis === "Semua"){
+        tampilkan(semuaProduk);
+        return;
+    }
 
-tampilkan(hasil);
+    const hasil = semuaProduk.filter(item =>
+        item.jenis &&
+        item.jenis.toLowerCase() === jenis.toLowerCase()
+    );
+
+    tampilkan(hasil);
 
 }
