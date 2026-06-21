@@ -64,3 +64,24 @@ document
     tampilkan(hasil);
 
 });
+
+function beliProduk(produk,harga){
+
+const nomorWA =
+"6282261467360";
+
+const pesan =
+`Halo Admin PPOB Desa Panglima Raja
+
+Saya ingin membeli:
+
+${produk}
+
+Harga: Rp ${harga.toLocaleString()}
+`;
+
+window.open(
+`https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`
+);
+
+}
