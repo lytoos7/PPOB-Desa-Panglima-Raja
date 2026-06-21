@@ -2,7 +2,7 @@
   "name": "PPOB Desa Panglima Raja",
   "short_name": "PPOB Desa",
   "description": "Aplikasi Agen Pulsa dan PPOB Terpercaya",
-  "start_url": "/index.html",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#eef2f6",
   "theme_color": "#0b5394",
