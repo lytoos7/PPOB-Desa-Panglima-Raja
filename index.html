@@ -1,46 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>PPOB Desa Panglima Raja</title>
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PPOB Desa Panglima Raja</title>
+
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<h1>PPOB Desa Panglima Raja</h1>
-
-<input type="text" id="cari" placeholder="Cari produk...">
-
-<div id="produkContainer"></div>
-
 <div class="header">
 
-    <h2>PPOB Panglima Raja</h2>
+    <div class="logo">
+        <h1>PPOB Desa Panglima Raja</h1>
+        <p>Layanan Pembayaran Online</p>
+    </div>
 
-    <div class="saldo">
-        Rp <span id="saldo">0</span>
+    <div class="saldo-box">
+        <span>Saldo</span>
+        <h2>Rp <span id="saldo">0</span></h2>
     </div>
 
 </div>
 
 <div class="menu">
 
-<button onclick="filterProduk('Pulsa')">
-Pulsa
-</button>
+<button onclick="filterProduk('Pulsa')">📱 Pulsa</button>
 
-<button onclick="filterProduk('Dana')">
-Dana
-</button>
+<button onclick="filterProduk('Dana')">💙 Dana</button>
 
-<button onclick="filterProduk('OVO')">
-OVO
-</button>
+<button onclick="filterProduk('OVO')">🟣 OVO</button>
 
-<button onclick="filterProduk('Token PLN')">
-PLN
-</button>
+<button onclick="filterProduk('Gopay')">🟢 Gopay</button>
+
+<button onclick="filterProduk('ShopeePay')">🛍️ ShopeePay</button>
+
+<button onclick="filterProduk('Token PLN')">⚡ PLN</button>
+
+<button onclick="filterProduk('Diamond')">🎮 Game</button>
+
+<button onclick="tampilkan(semuaProduk)">🏠 Semua</button>
 
 </div>
+
+<input
+type="text"
+id="cari"
+placeholder="Cari produk..."
+>
+
+<div id="produkContainer"></div>
 
 <script src="js/script.js"></script>
 
