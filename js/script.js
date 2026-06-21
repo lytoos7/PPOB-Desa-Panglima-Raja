@@ -16,22 +16,34 @@ fetch(API)
 // ===== Tahap 5 =====
 function tampilkan(data){
 
-    const container =
-    document.getElementById("produkContainer");
+const container =
+document.getElementById("produkContainer");
 
-    container.innerHTML = "";
+container.innerHTML = "";
 
-    data.forEach(item=>{
+data.forEach(item=>{
 
-        container.innerHTML += `
-            <div class="card">
-                <h3>${item.produk}</h3>
-                <p>Provider: ${item.provider}</p>
-                <p>Harga: Rp ${item.hargaJual.toLocaleString()}</p>
-            </div>
-        `;
+container.innerHTML += `
+<div class="card">
 
-    });
+<h3>${item.produk}</h3>
+
+<p>${item.provider}</p>
+
+<div class="harga">
+Rp ${item.hargaJual.toLocaleString()}
+</div>
+
+<button
+class="beli"
+onclick="beliProduk('${item.produk}',${item.hargaJual})">
+Beli
+</button>
+
+</div>
+`;
+
+});
 
 }
 
