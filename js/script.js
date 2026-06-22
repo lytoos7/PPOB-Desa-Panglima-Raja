@@ -136,3 +136,30 @@ function hubungiAdmin() {
 
 // Jalankan aplikasi saat halaman pertama kali dimuat
 inisialisasiApp();
+
+function bukaCekStatus() {
+    document.getElementById("popupCek").style.display = "flex";
+}
+
+function tutupCek() {
+    document.getElementById("popupCek").style.display = "none";
+    document.getElementById("hasilCek").innerText = "";
+}
+
+function prosesCek() {
+    const id = document.getElementById("idCek").value;
+    const hasil = document.getElementById("hasilCek");
+    
+    hasil.innerText = "Mencari data...";
+    
+    // Memanggil fungsi dari Code.gs
+    google.script.run
+        .withSuccessHandler(function(res) {
+            if(res.status === "Ditemukan") {
+                hasil.innerHTML = `Produk: ${res.produk}<br>Status: ${res.statusProses}`;
+            } else {
+                hasil.innerText = "ID Transaksi tidak ditemukan.";
+            }
+        })
+        .cekStatusTransaksi(id);
+}
