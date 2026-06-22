@@ -230,26 +230,28 @@ function prosesCek() {
 // Fungsi untuk menerima jawaban dari Google Sheets
 function hasilStatus(res) {
     const hasil = document.getElementById("hasilCek");
-    const idTrx = document.getElementById("idCek").value; // Ambil ID yang diinput
+    const idTrx = document.getElementById("idCek").value; 
     
     if(res.status === "Ditemukan") {
-        const isSukses = res.statusProses.toLowerCase() === "sukses";
+        // Amankan status agar tidak error jika formatnya aneh di Google Sheets
+        const statusProses = String(res.statusProses).toLowerCase();
+        const isSukses = statusProses === "sukses";
         
-        // Atur warna background (Hijau jika sukses, Kuning jika proses/pending)
+        // Atur warna background
         hasil.style.background = isSukses ? "#d4edda" : "#fff3cd";
         hasil.style.color = isSukses ? "#155724" : "#856404";
         
         let htmlInfo = `
             <strong>Produk:</strong> ${res.produk}<br>
             <strong>Tujuan:</strong> ${res.tujuan || "-"}<br>
-            <strong>Status:</strong> ${res.statusProses.toUpperCase()}
+            <strong>Status:</strong> ${String(res.statusProses).toUpperCase()}
         `;
         
-        // JIKA SUKSES, TAMBAHKAN TOMBOL DOWNLOAD STRUK!
+        // JIKA SUKSES, TAMPILKAN TOMBOL DOWNLOAD
         if (isSukses) {
-            // Mencegah error kutip pada produk
-            const produkAman = res.produk.replace(/'/g, "\\'");
-            const tujuanAman = (res.tujuan || "Tidak ada").replace(/'/g, "\\'");
+            // SOLUSI ERROR: Gunakan String() untuk memaksa angka menjadi teks
+            const produkAman = String(res.produk).replace(/'/g, "\\'");
+            const tujuanAman = String(res.tujuan || "Tidak ada").replace(/'/g, "\\'");
             
             htmlInfo += `
             <button onclick="downloadStruk('${idTrx}', '${produkAman}', '${tujuanAman}')" 
