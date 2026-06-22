@@ -230,15 +230,89 @@ function prosesCek() {
 // Fungsi untuk menerima jawaban dari Google Sheets
 function hasilStatus(res) {
     const hasil = document.getElementById("hasilCek");
+    const idTrx = document.getElementById("idCek").value; // Ambil ID yang diinput
+    
     if(res.status === "Ditemukan") {
-        hasil.style.background = res.statusProses.toLowerCase() === "sukses" ? "#d4edda" : "#fff3cd";
-        hasil.style.color = res.statusProses.toLowerCase() === "sukses" ? "#155724" : "#856404";
-        hasil.innerHTML = `<strong>Produk:</strong> ${res.produk}<br><strong>Status:</strong> ${res.statusProses.toUpperCase()}`;
+        const isSukses = res.statusProses.toLowerCase() === "sukses";
+        
+        // Atur warna background (Hijau jika sukses, Kuning jika proses/pending)
+        hasil.style.background = isSukses ? "#d4edda" : "#fff3cd";
+        hasil.style.color = isSukses ? "#155724" : "#856404";
+        
+        let htmlInfo = `
+            <strong>Produk:</strong> ${res.produk}<br>
+            <strong>Tujuan:</strong> ${res.tujuan || "-"}<br>
+            <strong>Status:</strong> ${res.statusProses.toUpperCase()}
+        `;
+        
+        // JIKA SUKSES, TAMBAHKAN TOMBOL DOWNLOAD STRUK!
+        if (isSukses) {
+            // Mencegah error kutip pada produk
+            const produkAman = res.produk.replace(/'/g, "\\'");
+            const tujuanAman = (res.tujuan || "Tidak ada").replace(/'/g, "\\'");
+            
+            htmlInfo += `
+            <button onclick="downloadStruk('${idTrx}', '${produkAman}', '${tujuanAman}')" 
+                style="margin-top: 15px; background: #0b5394; color: white; border: none; padding: 10px; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; transition: 0.2s;">
+                <i class="fa-solid fa-receipt"></i> Download Struk
+            </button>`;
+        }
+        
+        hasil.innerHTML = htmlInfo;
     } else {
         hasil.style.background = "#f8d7da";
         hasil.style.color = "#721c24";
         hasil.innerHTML = "ID Transaksi tidak ditemukan.";
     }
+}
+
+// --- FITUR CETAK STRUK DIGITAL ---
+function downloadStruk(id, produk, tujuan) {
+    // 1. Masukkan data dari database ke dalam Template HTML Struk kita
+    const sekarang = new Date();
+    // Mengubah format waktu ke lokal Indonesia (contoh: 22/06/2026, 19:10:00)
+    document.getElementById("strukWaktu").innerText = sekarang.toLocaleString('id-ID');
+    document.getElementById("strukId").innerText = id;
+    document.getElementById("strukStatus").innerText = "SUKSES";
+    document.getElementById("strukProduk").innerText = produk;
+    document.getElementById("strukTujuan").innerText = tujuan;
+
+    const areaStruk = document.getElementById("strukArea");
+    
+    // 2. Beri efek loading pada tombol agar terlihat canggih
+    const btnDown = event.currentTarget;
+    const btnLama = btnDown.innerHTML;
+    btnDown.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Memproses Struk...';
+    btnDown.style.opacity = "0.7";
+
+    // 3. Proses 'memotret' HTML menjadi gambar menggunakan html2canvas
+    setTimeout(() => {
+        html2canvas(areaStruk, { 
+            scale: 2, // Kualitas HD (Dua kali lipat resolusi biasa)
+            backgroundColor: "#ffffff"
+        }).then(canvas => {
+            // Ubah kanvas menjadi URL Gambar PNG
+            const imgData = canvas.toDataURL("image/png");
+            
+            // Buat 'link gaib' untuk mengunduh gambar secara otomatis
+            const a = document.createElement("a");
+            a.href = imgData;
+            a.download = `STRUK_${id}.png`; // Nama file yang tersimpan di HP pelanggan
+            document.body.appendChild(a);
+            a.click(); // Pencet tombol gaibnya
+            document.body.removeChild(a); // Hapus tombol gaibnya
+
+            // Kembalikan tombol ke semula
+            btnDown.innerHTML = '<i class="fa-solid fa-circle-check"></i> Struk Tersimpan!';
+            btnDown.style.background = "#27ae60";
+            
+            setTimeout(() => {
+                btnDown.innerHTML = btnLama;
+                btnDown.style.background = "#0b5394";
+                btnDown.style.opacity = "1";
+            }, 3000);
+        });
+    }, 500); // Jeda setengah detik biar data terisi dulu
 }
 
 inisialisasiApp();
