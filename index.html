@@ -418,6 +418,7 @@
             <div class="icon-box bg-semua"><i class="fa-solid fa-border-all"></i></div>
             <span>Semua</span>
         </button>
+        <button onclick="bukaCekStatus()" style="background:#e67e22;">🔍 Cek Status</button>
     </div>
 
     <!-- Search Bar -->
@@ -454,6 +455,16 @@
         </div>
     </div>
 
+</div>
+
+<div id="popupCek" class="popup">
+    <div class="popup-content">
+        <h3>Cek Status Transaksi</h3>
+        <input type="text" id="idCek" placeholder="Masukkan ID Transaksi...">
+        <button onclick="prosesCek()">Cek Sekarang</button>
+        <button onclick="tutupCek()" style="background:#95a5a6;">Tutup</button>
+        <div id="hasilCek" style="margin-top:15px; font-weight:bold;"></div>
+    </div>
 </div>
 
 <!-- Menghubungkan File JS -->
