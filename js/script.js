@@ -150,15 +150,25 @@ function prosesCek() {
     const id = document.getElementById("idCek").value;
     const hasil = document.getElementById("hasilCek");
     
-    hasil.innerText = "Mencari data...";
+    if (id.trim() === "") {
+        hasil.innerHTML = '<span style="color:#e74c3c;">Harap masukkan ID Transaksi!</span>';
+        return;
+    }
+
+    hasil.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Mencari data...';
+    hasil.style.background = "#f8f9fa";
+    hasil.style.color = "#333";
     
-    // Memanggil fungsi dari Code.gs
     google.script.run
         .withSuccessHandler(function(res) {
             if(res.status === "Ditemukan") {
-                hasil.innerHTML = `Produk: ${res.produk}<br>Status: ${res.statusProses}`;
+                hasil.style.background = res.statusProses.toLowerCase() === "sukses" ? "#d4edda" : "#fff3cd";
+                hasil.style.color = res.statusProses.toLowerCase() === "sukses" ? "#155724" : "#856404";
+                hasil.innerHTML = `<strong>Produk:</strong> ${res.produk}<br><strong>Status:</strong> ${res.statusProses.toUpperCase()}`;
             } else {
-                hasil.innerText = "ID Transaksi tidak ditemukan.";
+                hasil.style.background = "#f8d7da";
+                hasil.style.color = "#721c24";
+                hasil.innerHTML = "ID Transaksi tidak ditemukan.";
             }
         })
         .cekStatusTransaksi(id);
