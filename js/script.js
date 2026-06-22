@@ -52,7 +52,7 @@ function tampilkan(data, judul = "Semua Produk") {
     // Header untuk memberi tahu user sedang melihat kategori apa
     let htmlTemplate = `
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; padding-bottom:10px; border-bottom:2px dashed #e0e0e0;">
-        <h3 style="margin:0; font-size:14px; color:#0b5394;">📌 ${judul}</h3>
+        <h3 style="margin:0; font-size:14px; color:#0b5394;"><i class="fa-solid fa-list"></i> ${judul}</h3>
         ${judul !== "Semua Produk" ? `<button onclick="tampilkan(semuaProduk, 'Semua Produk')" style="background:#f1f2f6; color:#e74c3c; border:none; padding:5px 12px; border-radius:8px; font-size:11px; font-weight:bold; cursor:pointer;"><i class="fa-solid fa-rotate-left"></i> Kembali</button>` : ''}
     </div>
     `;
