@@ -417,6 +417,9 @@
         });
       }
     </script>
+
+    <!-- Library untuk mengubah HTML menjadi Gambar (Struk) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
 
@@ -557,6 +560,28 @@
             
             <div id="providerContainer" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:10px;">
             </div>
+        </div>
+    </div>
+    <!-- Area Struk Tersembunyi (Gaya Struk Kasir / Thermal Printer) -->
+    <div id="strukArea" style="position: absolute; left: -9999px; top: 0; background: white; width: 320px; padding: 20px; font-family: 'Courier New', Courier, monospace; color: #000; border: 1px solid #ddd; box-sizing: border-box;">
+        <div style="text-align: center; border-bottom: 2px dashed #000; padding-bottom: 10px; margin-bottom: 10px;">
+            <h2 style="margin: 0; font-size: 20px;">PPOB DESA</h2>
+            <p style="margin: 0; font-size: 12px;">Panglima Raja</p>
+        </div>
+        <div style="font-size: 13px; line-height: 1.6; margin-bottom: 10px; border-bottom: 2px dashed #000; padding-bottom: 10px;">
+            <div style="display: flex; justify-content: space-between;"><span>Waktu:</span> <strong id="strukWaktu"></strong></div>
+            <div style="display: flex; justify-content: space-between;"><span>ID Trx:</span> <strong id="strukId"></strong></div>
+            <div style="display: flex; justify-content: space-between;"><span>Status:</span> <strong id="strukStatus"></strong></div>
+        </div>
+        <div style="font-size: 14px; line-height: 1.6; margin-bottom: 15px; border-bottom: 2px dashed #000; padding-bottom: 15px;">
+            <div style="color: #555; font-size: 12px;">Produk:</div>
+            <div id="strukProduk" style="font-weight: bold; margin-bottom: 8px;"></div>
+            <div style="color: #555; font-size: 12px;">Nomor Tujuan:</div>
+            <div id="strukTujuan" style="font-weight: bold;"></div>
+        </div>
+        <div style="text-align: center; font-size: 11px; opacity: 0.8;">
+            <p style="margin: 0;">Terima kasih atas kepercayaan Anda.</p>
+            <p style="margin: 2px 0 0 0;">Simpan struk ini sebagai bukti pembayaran sah.</p>
         </div>
     </div>
 
