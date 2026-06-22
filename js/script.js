@@ -196,17 +196,24 @@ function prosesCek() {
     hasil.style.background = "#f8f9fa";
     hasil.style.color = "#333";
     
-    google.script.run.withSuccessHandler(function(res) {
-        if(res.status === "Ditemukan") {
-            hasil.style.background = res.statusProses.toLowerCase() === "sukses" ? "#d4edda" : "#fff3cd";
-            hasil.style.color = res.statusProses.toLowerCase() === "sukses" ? "#155724" : "#856404";
-            hasil.innerHTML = `<strong>Produk:</strong> ${res.produk}<br><strong>Status:</strong> ${res.statusProses.toUpperCase()}`;
-        } else {
-            hasil.style.background = "#f8d7da";
-            hasil.style.color = "#721c24";
-            hasil.innerHTML = "ID Transaksi tidak ditemukan.";
-        }
-    }).cekStatusTransaksi(id);
+    // Memanggil API Google Sheets dari GitHub
+    const scriptCek = document.createElement("script");
+    scriptCek.src = API_URL + "?api=cekstatus&id=" + id + "&callback=hasilStatus";
+    document.body.appendChild(scriptCek);
+}
+
+// Fungsi untuk menerima jawaban dari Google Sheets
+function hasilStatus(res) {
+    const hasil = document.getElementById("hasilCek");
+    if(res.status === "Ditemukan") {
+        hasil.style.background = res.statusProses.toLowerCase() === "sukses" ? "#d4edda" : "#fff3cd";
+        hasil.style.color = res.statusProses.toLowerCase() === "sukses" ? "#155724" : "#856404";
+        hasil.innerHTML = `<strong>Produk:</strong> ${res.produk}<br><strong>Status:</strong> ${res.statusProses.toUpperCase()}`;
+    } else {
+        hasil.style.background = "#f8d7da";
+        hasil.style.color = "#721c24";
+        hasil.innerHTML = "ID Transaksi tidak ditemukan.";
+    }
 }
 
 inisialisasiApp();
