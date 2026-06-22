@@ -1,5 +1,14 @@
 console.log("Aplikasi PPOB Berjalan");
 
+// Menghilangkan Splash Screen setelah 2 detik
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        const splash = document.getElementById('splashScreen');
+        splash.style.opacity = '0';
+        splash.style.visibility = 'hidden';
+    }, 2000); // 2000 ms = 2 detik
+});
+
 // Gunakan URL Web App Anda
 const API_URL = "https://script.google.com/macros/s/AKfycbxl3pLv9JsbRYVyt4V6KqwbI9IYZZhNtR8ly0-yY-vI8QCLZ8X9maNC0x826qc43xdY/exec";
 
@@ -155,20 +164,36 @@ function tutupPopup() {
 }
 
 function kirimWA() {
-    const tujuan = document.getElementById("tujuan").value;
+    const tujuan = document.getElementById("tujuan").value.trim(); // Hapus spasi kiri/kanan
     const produk = document.getElementById("produkDipilih").value;
     const harga = document.getElementById("hargaDipilih").value;
 
-    if (tujuan.trim() === "") {
-        alert("Mohon isi nomor HP atau ID Pelanggan tujuan terlebih dahulu.");
+    // 1. Cek apakah kosong
+    if (tujuan === "") {
+        alert("Peringatan: Nomor HP atau ID Pelanggan tidak boleh kosong!");
         return;
     }
 
+    // 2. Cek apakah mengandung huruf (hanya boleh angka)
+    // Pengecualian jika format ID Game butuh huruf, Anda bisa menghapus blok ini nanti
+    const regexAngka = /^[0-9]+$/;
+    if (!regexAngka.test(tujuan)) {
+        alert("Peringatan: Format salah! Nomor tujuan hanya boleh berisi angka.");
+        return;
+    }
+
+    // 3. Cek jumlah digit (minimal 8 atau 10 angka untuk nomor Indonesia/ID Game)
+    if (tujuan.length < 8) {
+        alert("Peringatan: Nomor terlalu pendek! Pastikan nomor tujuan sudah benar.");
+        return;
+    }
+
+    // Jika semua validasi lolos, buat pesan WA
     const adminWA = "6282261467360";
     const pesan = `Halo Admin PPOB Desa Panglima Raja 👋\n\nSaya ingin membeli:\n*Produk:* ${produk}\n*Tujuan:* ${tujuan}\n*Harga:* Rp ${Number(harga).toLocaleString("id-ID")}\n\nMohon diproses ya, terima kasih!`;
 
     window.open(`https://wa.me/${adminWA}?text=${encodeURIComponent(pesan)}`);
-    tutupPopup();
+    tutupPopup(); // Tutup popup setelah dialihkan ke WA
 }
 
 function hubungiAdmin() {
