@@ -1,11 +1,11 @@
 const CACHE_NAME = 'ppob-desa-v1';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/css/style.css',
-  '/js/script.js',
-  '/icon-192.png',
-  '/icon-512.png'
+  './',
+  './index.html',
+  './css/style.css',
+  './js/script.js',
+  './icon-192.png',
+  './icon-512.png'
 ];
 
 self.addEventListener('install', function(event) {
